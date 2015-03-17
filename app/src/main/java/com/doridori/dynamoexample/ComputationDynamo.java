@@ -2,55 +2,36 @@ package com.doridori.dynamoexample;
 
 import android.os.AsyncTask;
 
-import com.doridori.dynamoexample.state.StateMachine;
+import com.doridori.dynamo.Dynamo;
+import com.doridori.dynamo.StateMachine;
 
-import java.util.Observable;
 import java.util.Random;
 
 /**
- * Follows the Pattern X spec
- *
- * //todo what can we abstrct - not much - boilerplate is accept method on each state and main visit method
- * //what state generation can we drive with annotations? We need to define states but some boilerplate methods,
- * we need to define visitor interface so can code against (or do we? could annotate methods for state calling!!!e
- *
- * //TODO HIDING BUTTON - could have a UI presentor in here which is passed through with each state change? that way view logic spec is captured outside of the view impl itself
- * //TODO can we use annotation processing for any of this? - maye
+ * Example Dynamo implementation that performs some arbitrary asynchronous operation.
  */
-public class ComputationDynamo extends Observable
+public class ComputationDynamo extends Dynamo<ComputationDynamo.ComputationState>
 {
     //======================================================================================
-    // FIELDS
+    // CONSTRUCTOR
     //======================================================================================
 
-    private StateMachine<StateBehaviour> mComputationStateMachine = new StateMachine();
+    public ComputationDynamo()
+    {
+        //set the initial state
+        newState(new UninitializedState());
+    }
 
     //======================================================================================
     // METHODS
     //======================================================================================
 
-    public ComputationDynamo()
-    {
-        mComputationStateMachine.nextState(new UninitializedState());
-    }
-
     public void startComputation()
     {
-        //instead of calling through to state/strategy methods we could push the new state on
+        // instead of calling through to state/strategy methods we could push the new state on
         // directly - but then would need to check current state and that requires instanceOf
         // and handling of state transitions outside of the states
-        mComputationStateMachine.getCurrentState().startComputation();
-    }
-
-    //======================================================================================
-    // STATE HANDLING
-    //======================================================================================
-
-    private void newState(StateBehaviour newState)
-    {
-        mComputationStateMachine.nextState(newState);
-        setChanged();
-        notifyObservers();
+        getStateMachine().getCurrentState().startComputation();
     }
 
     //======================================================================================
@@ -58,9 +39,11 @@ public class ComputationDynamo extends Observable
     //======================================================================================
 
     /**
-     * Interface for shared state behaviour methods.
+     * Interface for shared computation state behaviour methods.
+     *
+     * Abstract as extending an abstract class.
      */
-    private abstract class StateBehaviour extends StateMachine.State
+    protected abstract class ComputationState extends StateMachine.State
     {
         public abstract void startComputation();
 
@@ -70,7 +53,7 @@ public class ComputationDynamo extends Observable
         public abstract void accept(ComputationVisitor visitor);
     }
 
-    public class UninitializedState extends StateBehaviour
+    public class UninitializedState extends ComputationState
     {
         @Override
         public void startComputation()
@@ -85,7 +68,7 @@ public class ComputationDynamo extends Observable
         }
     }
 
-    public class PerformingComputationState extends StateBehaviour
+    public class PerformingComputationState extends ComputationState
     {
         @Override
         public void enteringState()
@@ -129,7 +112,7 @@ public class ComputationDynamo extends Observable
         }
     }
 
-    public class ComputationFinishedState extends StateBehaviour
+    public class ComputationFinishedState extends ComputationState
     {
         private int mResult;
 
@@ -172,10 +155,6 @@ public class ComputationDynamo extends Observable
 
     public void visitCurrentState(ComputationVisitor computationVisitor)
     {
-        mComputationStateMachine.getCurrentState().accept(computationVisitor);
+        getStateMachine().getCurrentState().accept(computationVisitor);
     }
-
-
-
-
 }

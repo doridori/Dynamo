@@ -9,14 +9,19 @@ import android.widget.TextView;
 import java.util.Observable;
 import java.util.Observer;
 
-
+/**
+ * Example Activity that interacts with a stateful-Dynamo instance
+ */
 public class ComputationActivity extends ActionBarActivity implements Observer, ComputationDynamo.ComputationVisitor
 {
-    //TODO populate with annotation and auto-saved state for UUID?
-    private ComputationDynamo mXController;
+    private ComputationDynamo mComputationDynamo;
 
     private Button mGoButton;
     private TextView mResultTxt;
+
+    //============================================================================
+    // Lifecycle
+    //============================================================================
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -29,15 +34,18 @@ public class ComputationActivity extends ActionBarActivity implements Observer, 
 
         //create / obtain ref to controller with some meta data - can be created with intent extras - some simple way to specify scope rules needed.
         //For this example we just want one controller attached to this activity that will persist for ALL instances of this activity.
-        //TODO list differnt strategies - UUID (with saved state persistence), fixed name (i.e. twitter feed), url (i.e. bbc), intent extra
-        mXController = DynamoManager.getInstance().getComputationXController("ExampleFixedControllerName");
-        mXController.addObserver(this);
-        mXController.visitCurrentState(this);
+        mComputationDynamo = DynamoManager.getInstance().getComputationDynamo("ExampleFixedControllerName");
+        mComputationDynamo.addObserver(this);
+        mComputationDynamo.visitCurrentState(this);
     }
+
+    //============================================================================
+    // Buttons
+    //============================================================================
 
     public void goButtonPressed(View view)
     {
-        mXController.startComputation();
+        mComputationDynamo.startComputation();
     }
 
     //======================================================================================
@@ -47,12 +55,14 @@ public class ComputationActivity extends ActionBarActivity implements Observer, 
     @Override
     public void update(Observable observable, Object data)
     {
-        mXController.visitCurrentState(this);
+        //visiting the current state will result in one of the onState() methods in this class to be called
+        mComputationDynamo.visitCurrentState(this);
     }
 
     //======================================================================================
-    // Controller States
+    // Dynamo States
     //======================================================================================
+    // the below onState methods are where we should perform all UI transitions.
 
     @Override
     public void onState(ComputationDynamo.UninitializedState state)
