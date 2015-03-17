@@ -9,15 +9,20 @@ import java.util.Queue;
  * Holds a ref to a n Dynamos. Subclass one of these for each controller type in your app.
  *
  * This generic Dynamo holder has a notion of Dynamo `meta` data. This is used to hook up View
- * elements (Activities, Fragments and View) to Dynamo instances. This can be of the following type:
+ * elements (Activities, Fragments and View) to Dynamo instances. This is what allows reconnection of View instances to existing Dynamos.
+ *
+ * This can be of the following type:
  *
  * - Fixed Name: This works well for a View that will show the same data regardless of the View
  *   instance i.e. an app wide notepad. The fixed name could be the class name or some other constant.
  *
- * - Variable Name: You may have a View element that takes some input data (say a data source URL or
+ * - Variable Name - Input data: You may have a View element that takes some input data (say a data source URL or
  *   arguments) via the Intent Bundle, which is used to curate the data obtained via the controller
  *   instance. You could then use this as the meta data. This would mean View instances that show
  *   the same data would hook up to existing Dynamos that may already have loaded the data etc.
+ *
+ * - Variable Name - UUID: You may also want to pass a UUID or incrementing reference through here,
+ *   making sure to save and reload this with the savedInstanceState (or persistance Bundle if using a View)
  *
  * This class also has a notion of size. The Dynamos are held in a FIFO queue of the passed-in size.
  *
@@ -53,7 +58,7 @@ public class DynamoHolder<T>
     }
 
     /**
-     * @param meta This can be anything i.e. UUID, url, something else that can represent the related View component
+     * @param meta See the doc for this class {@link com.doridori.dynamo.DynamoHolder}
      * @return
      */
     public T getDynamo(String meta, DynamoFactory<T> dynamoFactory)

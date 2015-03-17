@@ -32,11 +32,17 @@ public class ComputationActivity extends ActionBarActivity implements Observer, 
         mGoButton = (Button) findViewById(R.id.button_go);
         mResultTxt = (TextView) findViewById(R.id.result);
 
-        //create / obtain ref to controller with some meta data - can be created with intent extras - some simple way to specify scope rules needed.
+        //create / obtain ref to controller with some meta data - can be created with intent extras OR a saved-state persisted UUID - //TODO some simple way to specify scope rules needed.
         //For this example we just want one controller attached to this activity that will persist for ALL instances of this activity.
         mComputationDynamo = DynamoManager.getInstance().getComputationDynamo("ExampleFixedControllerName");
         mComputationDynamo.addObserver(this);
         mComputationDynamo.visitCurrentState(this);
+    }
+
+    @Override protected void onDestroy()
+    {
+        super.onDestroy();
+        mComputationDynamo.deleteObserver(this);
     }
 
     //============================================================================
