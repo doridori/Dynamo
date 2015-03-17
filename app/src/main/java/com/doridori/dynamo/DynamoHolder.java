@@ -28,7 +28,7 @@ import java.util.Queue;
  * @param <T> Dynamo class
  * //TODO test
  */
-public abstract class DynamoHolder<T>
+public class DynamoHolder<T>
 {
     /**
      * Map for quick access to Dynamo indexed by meta
@@ -56,11 +56,11 @@ public abstract class DynamoHolder<T>
      * @param meta This can be anything i.e. UUID, url, something else that can represent the related View component
      * @return
      */
-    public T getDynamo(String meta)
+    public T getDynamo(String meta, DynamoFactory<T> dynamoFactory)
     {
         if(!mDynamoMap.containsKey(meta))
         {
-            T dynamo = newDynamo();
+            T dynamo = dynamoFactory.buildDynamo();
             mDynamoMap.put(meta, dynamo);
             mMetaQueue.add(meta);
 
@@ -80,8 +80,12 @@ public abstract class DynamoHolder<T>
     }
 
     /**
-     * Generics and object creation dont mix - plus some controllers may require extra
-     * initialisation args so pretty easy to add in this way
+     * Some Dynamos may require extra initialisation args. This interface allows creation of Dynamo
+     * to be defined at time of request. If using Dynamo init args make sure to include them in the
+     * meta field of {@link #getDynamo(String, com.doridori.dynamo.DynamoHolder.DynamoFactory)}
      */
-    protected abstract T newDynamo();
+    public interface DynamoFactory<T>
+    {
+        public  T buildDynamo();
+    }
 }

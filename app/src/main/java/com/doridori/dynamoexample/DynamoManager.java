@@ -23,28 +23,25 @@ public class DynamoManager
     //======================================================================================
 
     /**
-     * Controller manager declaration
+     * Dynamo manager declaration
      */
-    public DynamoHolder<ComputationDynamo> mComputationDynamoHolder =
-            new DynamoHolder<ComputationDynamo>(1)
-                {
-                    @Override
-                    protected ComputationDynamo newDynamo()
-                    {
-                        return new ComputationDynamo();
-                    }
-                };
+    public DynamoHolder<ComputationDynamo> mComputationDynamoHolder = new DynamoHolder<ComputationDynamo>(1);
 
     /**
-     * @param meta See {@link DynamoHolder#getDynamo(String)} meta arg
+     * Getter from the ComputationDynamo. We couldve passed in extra args to this method if the Dynamo needed some initialisation data.
+     *
+     * @param See {@link com.doridori.dynamo.DynamoHolder#getDynamo(String, com.doridori.dynamo.DynamoHolder.DynamoFactory)} method
      * @return
      */
     public ComputationDynamo getComputationDynamo(String meta)
     {
-        return mComputationDynamoHolder.getDynamo(meta);
+        return mComputationDynamoHolder.getDynamo(meta, new DynamoHolder.DynamoFactory<ComputationDynamo>()
+        {
+            @Override public ComputationDynamo buildDynamo()
+            {
+                return new ComputationDynamo();
+            }
+        });
     }
 
-    //anon class that can create instance of dynamo
-    //or bundle pass in instead
-    //or define controllers and holder size in list
 }
