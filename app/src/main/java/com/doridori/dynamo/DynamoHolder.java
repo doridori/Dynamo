@@ -84,6 +84,16 @@ public class DynamoHolder<T>
         }
     }
 
+    public void clear()
+    {
+        //TODO
+    }
+
+    public void clear(String meta)
+    {
+        //TODO 
+    }
+
     /**
      * Some Dynamos may require extra initialisation args. This interface allows creation of Dynamo
      * to be defined at time of request. If using Dynamo init args make sure to include them in the
