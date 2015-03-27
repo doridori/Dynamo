@@ -1,4 +1,4 @@
-package com.doridori.dynamo;
+package couk.doridori.dynamo;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -58,7 +58,7 @@ public class DynamoHolder<T>
     }
 
     /**
-     * @param meta See the doc for this class {@link com.doridori.dynamo.DynamoHolder}
+     * @param meta See the doc for this class {@link couk.doridori.dynamo.DynamoHolder}
      * @return
      */
     public T getDynamo(String meta, DynamoFactory<T> dynamoFactory)

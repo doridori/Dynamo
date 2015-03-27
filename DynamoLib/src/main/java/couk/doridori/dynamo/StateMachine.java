@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.doridori.dynamo;
+package couk.doridori.dynamo;
 
 /**
  * Simple state machine. If need something that needs to handle a big transition matrix look at the SMC compiler
@@ -41,7 +41,7 @@ public class StateMachine<T extends StateMachine.State> {
      * code in your last state inside the {@link StateMachine.State#exitingState()} method
      *
      * @param finalState you may want to set a final state that is just a stub so any state machine calls after this method has
-     *                   called will do nothing but not throw an NPE. Can be null
+     *                   called will do nothing but not throw an NPE. Can be null otherwise.
      */
     public synchronized void finish(T finalState){
         if(null != mCurrentState)
