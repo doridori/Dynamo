@@ -45,19 +45,11 @@ public class StateMachineTest
 
         InOrder inOrder = Mockito.inOrder(firstMockedState, secondMockedState);
 
-        //TODO test below in order - test first reversed http://site.mockito.org/mockito/docs/current/org/mockito/Mockito.html#6
-
         mStateStateMachine.nextState(firstMockedState);
-        Mockito.verify(firstMockedState).enteringState();
+        inOrder.verify(firstMockedState).enteringState();
 
         mStateStateMachine.nextState(secondMockedState);
-        Mockito.verify(firstMockedState).exitingState();
-        Mockito.verify(secondMockedState).exitingState();
-    }
-
-    @Test
-    public void multipleSyncronousTransition_lifecycleMethodsCalled()
-    {
-
+        inOrder.verify(firstMockedState).exitingState();
+        inOrder.verify(secondMockedState).enteringState();
     }
 }

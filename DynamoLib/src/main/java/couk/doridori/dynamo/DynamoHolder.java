@@ -31,7 +31,8 @@ import java.util.Queue;
  * constraints.
  *
  * @param <T> Dynamo class
- * //TODO test
+ *
+ * //TODO use linked hash map instead
  */
 public class DynamoHolder<T>
 {
@@ -97,10 +98,10 @@ public class DynamoHolder<T>
     /**
      * Some Dynamos may require extra initialisation args. This interface allows creation of Dynamo
      * to be defined at time of request. If using Dynamo init args make sure to include them in the
-     * meta field of {@link #getDynamo(String, com.doridori.dynamo.DynamoHolder.DynamoFactory)}
+     * meta field of {@link #getDynamo(String, couk.doridori.dynamo.DynamoHolder.DynamoFactory)}
      */
     public interface DynamoFactory<T>
     {
-        public  T buildDynamo();
+        public T buildDynamo();
     }
 }
