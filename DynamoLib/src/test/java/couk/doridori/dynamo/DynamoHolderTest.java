@@ -43,6 +43,57 @@ public class DynamoHolderTest
         Dynamo secondDynamoRequest = testDynamoHolder.getDynamo("testMeta", dynamoFactorySpy);
 
         Assert.assertEquals(firstDynamoRequest, secondDynamoRequest);
+
         Mockito.verify(dynamoFactorySpy, Mockito.times(1)).buildDynamo();
+    }
+
+    @Test
+    public void testCanRetrieveSameMetaName_multipleDynamos()
+    {
+        DynamoHolder<TestDynamo> testDynamoHolder = new DynamoHolder<TestDynamo>(10);
+        DynamoHolder.DynamoFactory dynamoFactorySpy = Mockito.spy(new DynamoHolder.DynamoFactory<TestDynamo>()
+        {
+            @Override
+            public TestDynamo buildDynamo()
+            {
+                return new TestDynamo();
+            }
+        });
+
+        Dynamo firstDynamoRequest = testDynamoHolder.getDynamo("testMeta1", dynamoFactorySpy);
+        Dynamo secondDynamoRequest = testDynamoHolder.getDynamo("testMeta2", dynamoFactorySpy);
+        Dynamo thirdDynamoRequest = testDynamoHolder.getDynamo("testMeta1", dynamoFactorySpy);
+        Dynamo fourthDynamoRequest = testDynamoHolder.getDynamo("testMeta2", dynamoFactorySpy);
+
+        Assert.assertEquals(firstDynamoRequest, thirdDynamoRequest);
+        Assert.assertEquals(secondDynamoRequest, fourthDynamoRequest);
+        Assert.assertNotEquals(firstDynamoRequest, secondDynamoRequest);
+
+        Mockito.verify(dynamoFactorySpy, Mockito.times(2)).buildDynamo();
+    }
+
+    @Test
+    public void testSizeLimiting_singleDyanmoHolder_shouldRecreateTrimmedDynamos()
+    {
+        DynamoHolder<TestDynamo> testDynamoHolder = new DynamoHolder<TestDynamo>(1);
+        DynamoHolder.DynamoFactory dynamoFactorySpy = Mockito.spy(new DynamoHolder.DynamoFactory<TestDynamo>()
+        {
+            @Override
+            public TestDynamo buildDynamo()
+            {
+                return new TestDynamo();
+            }
+        });
+
+        Dynamo firstDynamoRequest = testDynamoHolder.getDynamo("testMeta1", dynamoFactorySpy);
+        Dynamo secondDynamoRequest = testDynamoHolder.getDynamo("testMeta2", dynamoFactorySpy);
+        Dynamo thirdDynamoRequest = testDynamoHolder.getDynamo("testMeta1", dynamoFactorySpy);
+        Dynamo fourthDynamoRequest = testDynamoHolder.getDynamo("testMeta2", dynamoFactorySpy);
+
+        Assert.assertNotEquals(firstDynamoRequest, thirdDynamoRequest);
+        Assert.assertNotEquals(secondDynamoRequest, fourthDynamoRequest);
+        Assert.assertNotEquals(firstDynamoRequest, secondDynamoRequest);
+
+        Mockito.verify(dynamoFactorySpy, Mockito.times(4)).buildDynamo();
     }
 }
