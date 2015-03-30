@@ -1,9 +1,6 @@
 package couk.doridori.dynamo;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Holds a ref to a n Dynamos. Subclass one of these for each controller type in your app.
@@ -39,23 +36,14 @@ public class DynamoHolder<T>
     /**
      * Map for quick access to Dynamo indexed by meta
      */
-    private Map<String, T> mDynamoMap = new HashMap<>();
-    /**
-     * Queue of meta for easy size limiting
-     */
-    private Queue<String> mMetaQueue = new LinkedList<>();
-
-    private final int mMaxSize;
+    private MaxSizeHashMap<String, T> mDynamoMap;
 
     /**
      * @param maxSize 1 or more
      */
     public DynamoHolder(int maxSize)
     {
-        if(maxSize < 1)
-            throw new IllegalArgumentException("maxSize must be bigger than 1:"+maxSize);
-
-        mMaxSize = maxSize;
+        mDynamoMap = new MaxSizeHashMap<>(maxSize);
     }
 
     /**
@@ -68,14 +56,6 @@ public class DynamoHolder<T>
         {
             T dynamo = dynamoFactory.buildDynamo();
             mDynamoMap.put(meta, dynamo);
-            mMetaQueue.add(meta);
-
-            //check max size not exceeded
-            if(mMetaQueue.size() > mMaxSize)
-            {
-                String metaRemoved = mMetaQueue.remove();
-                mDynamoMap.remove(metaRemoved);
-            }
 
             return dynamo;
         }

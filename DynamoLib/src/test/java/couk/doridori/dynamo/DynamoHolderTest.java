@@ -96,4 +96,7 @@ public class DynamoHolderTest
 
         Mockito.verify(dynamoFactorySpy, Mockito.times(4)).buildDynamo();
     }
+
+    //TODO test clear
+    //TODO test clear all
 }
