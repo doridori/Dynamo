@@ -28,8 +28,6 @@ import java.util.*;
  * constraints.
  *
  * @param <T> Dynamo class
- *
- * //TODO use linked hash map instead
  */
 public class DynamoHolder<T>
 {
@@ -65,14 +63,14 @@ public class DynamoHolder<T>
         }
     }
 
-    public void clear()
+    public void clearAll()
     {
-        //TODO
+        mDynamoMap.clear();
     }
 
     public void clear(String meta)
     {
-        //TODO 
+        mDynamoMap.remove(meta);
     }
 
     /**

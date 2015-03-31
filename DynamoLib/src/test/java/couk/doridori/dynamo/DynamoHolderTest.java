@@ -2,10 +2,7 @@ package couk.doridori.dynamo;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.mockito.Matchers;
 import org.mockito.Mockito;
-
-import java.util.Observable;
 
 /**
  * @author Dorian Cussen
@@ -97,6 +94,53 @@ public class DynamoHolderTest
         Mockito.verify(dynamoFactorySpy, Mockito.times(4)).buildDynamo();
     }
 
-    //TODO test clear
-    //TODO test clear all
+    @Test
+    public void testClearAll()
+    {
+        final String DYNAMO_NAME = "testMeta1";
+
+        DynamoHolder<TestDynamo> testDynamoHolder = new DynamoHolder<TestDynamo>(2);
+        DynamoHolder.DynamoFactory dynamoFactory = new DynamoHolder.DynamoFactory<TestDynamo>()
+        {
+            @Override
+            public TestDynamo buildDynamo()
+            {
+                return new TestDynamo();
+            }
+        };
+
+        Dynamo firstDynamoRequest = testDynamoHolder.getDynamo(DYNAMO_NAME, dynamoFactory);
+        Dynamo secondDynamoRequest = testDynamoHolder.getDynamo(DYNAMO_NAME, dynamoFactory);
+        Assert.assertEquals(firstDynamoRequest, secondDynamoRequest);
+
+        testDynamoHolder.clearAll();
+
+        Dynamo thirdDynamoRequest = testDynamoHolder.getDynamo(DYNAMO_NAME, dynamoFactory);
+        Assert.assertNotEquals(thirdDynamoRequest, secondDynamoRequest);
+    }
+
+    @Test
+    public void testClearSpecific()
+    {
+        final String DYNAMO_NAME = "testMeta1";
+
+        DynamoHolder<TestDynamo> testDynamoHolder = new DynamoHolder<TestDynamo>(2);
+        DynamoHolder.DynamoFactory dynamoFactory = new DynamoHolder.DynamoFactory<TestDynamo>()
+        {
+            @Override
+            public TestDynamo buildDynamo()
+            {
+                return new TestDynamo();
+            }
+        };
+
+        Dynamo firstDynamoRequest = testDynamoHolder.getDynamo(DYNAMO_NAME, dynamoFactory);
+        Dynamo secondDynamoRequest = testDynamoHolder.getDynamo(DYNAMO_NAME, dynamoFactory);
+        Assert.assertEquals(firstDynamoRequest, secondDynamoRequest);
+
+        testDynamoHolder.clear(DYNAMO_NAME);
+
+        Dynamo thirdDynamoRequest = testDynamoHolder.getDynamo(DYNAMO_NAME, dynamoFactory);
+        Assert.assertNotEquals(thirdDynamoRequest, secondDynamoRequest);
+    }
 }
