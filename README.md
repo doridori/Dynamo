@@ -5,7 +5,12 @@ An extremely lightweight collection of classes for implementing state based deco
 Motivation
 ----------
 
-See this post and this post
+See this post and this pos
+
+Wiki
+----
+
+See the Wikio
 
 Download
 --------
