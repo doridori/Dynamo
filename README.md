@@ -1,0 +1,6 @@
+# Dynamo
+
+```java
+public class
+{}
+```
