@@ -1,9 +1,11 @@
 # Dynamo
 
-```java
-public class
-{}
-```
+An extremely lightweight collection of classes for implementing state based decoupled architecture for Android applications.
+
+Motivation
+----------
+
+See this post and this post
 
 Download
 --------
