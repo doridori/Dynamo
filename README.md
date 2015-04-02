@@ -1,4 +1,4 @@
-<img src="https://github.com/doridori/Dynamo/blob/master/gfx/DynamoDroid.png" alt="dynamo droid"/>
+<div style="text-align: center"><img src="https://github.com/doridori/Dynamo/blob/master/gfx/DynamoDroid.png" alt="dynamo droid"/></div>
 
 # Dynamo
 
