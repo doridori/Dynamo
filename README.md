@@ -1,6 +1,8 @@
 # Dynamo
 
-An extremely lightweight collection of classes for implementing state based decoupled architecture for Android applications.
+An extremely lightweight collection of classes for implementing a **state** based decoupled architecture for Android applications.
+
+A major benefit of this is that it also keeps asynchronous code away from the Android lifecycle.
 
 <img src="https://github.com/doridori/Dynamo/blob/master/gfx/DynamoDroid.png" alt="dynamo droid"/>
 
@@ -33,8 +35,8 @@ Wiki
 
 The Wiki for this repo contains documentation about how to use this library. [Check it out](https://github.com/doridori/Dynamo/wiki).
 
-Questions
----------
+Questions / Feedback
+--------------------
 
 Admittedly, while trying to create a clear guide for people here I have probably created more confusion than you had to start with. If you have any questions, suggestions, abuse, lavish amounts of money or anything else you want to send my way please do. Use the Issues in this repo, twitter, the comments in my blog, the reddit posts, anything! At the end of the day I want to help you learn and learn myself so please feel free. Plus, if you think I have not explained something enough or have the wrong idea about something I want to hear it!
 
