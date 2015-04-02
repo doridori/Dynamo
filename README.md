@@ -33,6 +33,11 @@ Wiki
 
 The Wiki for this repo contains documentation about how to use this library. [Check it out](https://github.com/doridori/Dynamo/wiki).
 
+Questions
+---------
+
+Admittedly, while trying to create a clear guide for people here I have probably created more confusion than you had to start with. If you have any questions, suggestions, abuse, lavish amounts of money or anything else you want to send my way please do. Use the Issues in this repo, twitter, the comments in my blog, the reddit posts, anything! At the end of the day I want to help you learn and learn myself so please feel free. Plus, if you think I have not explained something enough or have the wrong idea about something I want to hear it!
+
 Download
 --------
 
