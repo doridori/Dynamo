@@ -12,13 +12,13 @@ The majority of Android apps have no standard approach to architecture. Its _ver
 - The "`God-Activity`" (or `Fragment`) that does everything and has to balance asynchronous code with the Android lifecycle.
 - A roll your own approach which still does not address all the issues associated with mixing asynchronous code and lifecycle events, which causes it to break down in some common use-cases.
 
-This is certainly not to say that there are not well-architected approaches out there, its just that I have not come across one which is well documented _and_ easy to jump into _and_ solves the issues that come from the `default` approaches. 
+This is certainly not to say that there are not well-architected approaches out there, its just that I have not come across one which is well documented _and_ easy to jump into _and_ solves the issues that come from the "default" approaches. 
 
-There are many blog posts at present which cover a subset of an MV* approach but this is not enough IMHO for someone to link off to and say "this is what we are doing". This is my attempt to start something for which I personally can do just that. A simple MV* style approach which is:
+There are many blog posts at present which cover a subset of an MV* approach but this is not enough IMHO for someone to link off to and say "this is what we are doing". This is my attempt to start something for which I personally can do just that. A simple approach which is:
 
-1) Relatively accessible for those newer to the Android world 
-2) Lightweight and easy to understand
-3) Explains how it solves common issues and provides examples for these cases.
+1. Relatively accessible for those newer to the Android world 
+2. Lightweight and easy to understand
+3. Explains how it solves common issues and provides examples for these cases.
 
 Blog Posts
 ----------
