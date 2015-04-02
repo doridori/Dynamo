@@ -1,5 +1,6 @@
-package couk.doridori.dynamo;
+package couk.doridori.dynamo.util;
 
+import couk.doridori.dynamo.util.MaxSizeHashMap;
 import org.junit.Assert;
 import org.junit.Test;
 

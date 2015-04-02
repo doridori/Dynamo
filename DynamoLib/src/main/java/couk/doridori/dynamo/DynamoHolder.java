@@ -1,9 +1,11 @@
 package couk.doridori.dynamo;
 
+import couk.doridori.dynamo.util.MaxSizeHashMap;
+
 import java.util.*;
 
 /**
- * Holds a ref to a n Dynamos. Subclass one of these for each controller type in your app.
+ * Holds a ref to a n Dynamos. Subclass one of these for each Dynamo subclass type in your app.
  *
  * This generic Dynamo holder has a notion of Dynamo `meta` data. This is used to hook up View
  * elements (Activities, Fragments and View) to Dynamo instances. This is what allows reconnection of View instances to existing Dynamos.
@@ -71,6 +73,11 @@ public class DynamoHolder<T>
     public void clear(String meta)
     {
         mDynamoMap.remove(meta);
+    }
+
+    public Map<String, T> getAll()
+    {
+        return mDynamoMap;
     }
 
     /**

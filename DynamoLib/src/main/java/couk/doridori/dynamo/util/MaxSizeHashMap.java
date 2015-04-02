@@ -1,4 +1,4 @@
-package couk.doridori.dynamo;
+package couk.doridori.dynamo.util;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
