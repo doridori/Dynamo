@@ -1,8 +1,8 @@
-<div style="text-align: center"><img src="https://github.com/doridori/Dynamo/blob/master/gfx/DynamoDroid.png" alt="dynamo droid"/></div>
-
 # Dynamo
 
 An extremely lightweight collection of classes for implementing state based decoupled architecture for Android applications.
+
+<img src="https://github.com/doridori/Dynamo/blob/master/gfx/DynamoDroid.png" alt="dynamo droid"/>
 
 Motivation
 ----------
@@ -31,7 +31,7 @@ The motivation for this lib is further outlined in two of my blog posts:
 Wiki
 ----
 
-This Wiki for this repo contains doumentation about how to use this library. Check it out.
+The Wiki for this repo contains doumentation about how to use this library. [Check it out](https://github.com/doridori/Dynamo/wiki).
 
 Download
 --------
