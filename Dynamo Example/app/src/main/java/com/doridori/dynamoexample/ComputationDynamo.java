@@ -2,8 +2,8 @@ package com.doridori.dynamoexample;
 
 import android.os.AsyncTask;
 
-import com.doridori.dynamo.Dynamo;
-import com.doridori.dynamo.StateMachine;
+import couk.doridori.dynamo.Dynamo;
+import couk.doridori.dynamo.StateMachine;
 
 import java.util.Random;
 
