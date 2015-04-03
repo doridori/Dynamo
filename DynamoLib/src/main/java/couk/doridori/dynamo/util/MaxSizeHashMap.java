@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Map impl that will limit the size of the map and work on a last-used-first-out-basis
+ * Map impl that will limit the size of the map and work on a Least Recently Used basis (LRU)
  */
 public class MaxSizeHashMap<K, V> extends LinkedHashMap<K, V>
 {
@@ -14,7 +14,7 @@ public class MaxSizeHashMap<K, V> extends LinkedHashMap<K, V>
         super(
                 maxSize,
                 maxSize, //load factor is ignored in the Map impl anyhow
-                true); //access should rearrange the underlying linkedHashMap so last used gets kicked out first
+                true); //access should rearrange the underlying linkedHashMap so last used gets kicked out first i.e. LRU
 
         mMaxSize = maxSize;
     }

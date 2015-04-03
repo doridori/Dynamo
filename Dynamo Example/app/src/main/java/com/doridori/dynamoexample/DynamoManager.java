@@ -4,6 +4,8 @@ import com.doridori.dynamo.DynamoHolder;
 
 /**
  * Singleton. Handles Dynamo instances.
+ *
+ * If using Dagger you may want to inject this class as a @Singleton instead
  */
 public class DynamoManager
 {

@@ -7,8 +7,9 @@ import java.util.*;
 /**
  * Holds a ref to a n Dynamos. Subclass one of these for each Dynamo subclass type in your app.
  *
- * This generic Dynamo holder has a notion of Dynamo `meta` data. This is used to hook up View
- * elements (Activities, Fragments and View) to Dynamo instances. This is what allows reconnection of View instances to existing Dynamos.
+ * This generic DynamoHolder has a notion of Dynamo `meta` data. This is used to hook up view
+ * elements (Activities, Fragments and View) to Dynamo instances. This is what allows reconnection
+ * of view instances to existing Dynamos.
  *
  * This can be of the following type:
  *
@@ -21,9 +22,9 @@ import java.util.*;
  *   the same data would hook up to existing Dynamos that may already have loaded the data etc.
  *
  * - Variable Name - UUID: You may also want to pass a UUID or incrementing reference through here,
- *   making sure to save and reload this with the savedInstanceState (or persistance Bundle if using a View)
+ *   making sure to save and reload this with the savedInstanceState (or persistence Bundle if using a View)
  *
- * This class also has a notion of size. The Dynamos are held in a FIFO queue of the passed-in size.
+ * This class also has a notion of size. The Dynamos are held in a Least Recently Used (LRU) queue of the passed-in size.
  *
  * Alternatively you may want to improve this class by adding some form of WeakReferencing and
  * caching as many Dynamo instances as possible OR introduce your own method of calculating size
