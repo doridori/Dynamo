@@ -1,7 +1,8 @@
 apply plugin: 'java'
+apply plugin: 'maven-publish'
 
 sourceCompatibility = 1.7
-version = '1.0'
+version = '1.0.0'
 
 repositories {
     mavenCentral()
@@ -10,4 +11,19 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile 'org.mockito:mockito-core:2.0.5-beta'
+}
+
+publishing {
+    publications {
+        releaseJar(MavenPublication) {
+            groupId 'couk.doridori.dynamo'
+            artifactId 'dynamo'
+
+            from components.java
+        }
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
 }
