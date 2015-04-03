@@ -19,7 +19,7 @@ public class DynamoTest
     @Test
     public void observerCalledOnSingleStateChange()
     {
-        Dynamo dynamo = new Dynamo();
+        Dynamo dynamo = new Dynamo(){};
         Observer observerMock = Mockito.mock(Observer.class);
         dynamo.addObserver(observerMock);
 
@@ -32,7 +32,7 @@ public class DynamoTest
     {
         //did see a bug with original impl that back to back transitions would result if the middle State lifecycle methods being skipped
 
-        final Dynamo dynamo = new Dynamo();
+        final Dynamo dynamo = new Dynamo(){};
         final StateMachine.State firstState = new StateMachine.State(){};
         final StateMachine.State secondState = new StateMachine.State(){};
 
