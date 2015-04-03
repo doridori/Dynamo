@@ -32,7 +32,7 @@ Blog Posts
 The motivation for this lib is further outlined in two of my blog posts:
 
 - [Android Architecture: MV?](http://doridori.github.io/Android-Architecture-MV%3F/)
-- [Android Architecture: Introducing Dynamo](http://doridori.github.io/) **UPDATE LINK**
+- [Android Architecture: Introducing Dynamo](http://doridori.github.io/Android-Architecture-Dynamo/) 
 
 Wiki
 ----
@@ -47,7 +47,7 @@ Admittedly, while trying to create a clear guide for people here I have probably
 Download
 --------
 
-_jcenter/mvn coming soon_
+_jcenter/mvn coming after this short intermission_
 
 For now can just grab the [latest release](https://github.com/doridori/Dynamo/releases) _i know i know_
 
