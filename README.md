@@ -47,7 +47,9 @@ Admittedly, while trying to create a clear guide for people here I have probably
 Download
 --------
 
-_jcenter coming soon_
+_jcenter/mvn coming soon_
+
+For now can just grab the [latest release](https://github.com/doridori/Dynamo/releases) _i know i know_
 
 License
 --------
