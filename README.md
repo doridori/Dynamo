@@ -20,7 +20,7 @@ There are some great libraries out there, its just that I have not come across o
 2. Easy to jump into without a large ramp-up time
 3. Solves the issues that come from the "default" approaches  (see the projects Wiki for more here) 
 
-Similarly, there are many blog posts at present which cover a subset of an MV* approach but this is not enough IMHO for someone to link off to and say "this is what we are doing". This is my attempt to start something for which I personally can do just that. A simple approach which is:
+Similarly, there are many great blog posts at present which cover a subset of an MV* (i.e. MVP) approach but most of the ones I have read leave me with as many questions as I have answers, do not form a complete road-map and sometimes intotroduce unneeded complexities or limitations. This is my attempt to create something that is a:
 
 1. Relatively accessible for those newer to the Android world 
 2. Lightweight and easy to understand
