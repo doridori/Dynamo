@@ -25,6 +25,7 @@ Similarly, there are many great blog posts at present which cover a subset of an
 1. Relatively accessible for those newer to the Android world 
 2. Lightweight and easy to understand
 3. Explains how it solves common issues and provides examples for these cases.
+4. Easy to write automated tests against
 
 Blog Posts
 ----------
