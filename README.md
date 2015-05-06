@@ -52,6 +52,8 @@ _jcenter/mvn coming after this short intermission_
 
 For now can just grab the [latest release](https://github.com/doridori/Dynamo/releases) _i know i know_
 
+Or to play with via MavenLocal by cloning the repo and running `./gradlew pTML` and then adding `mavenLocal()` to your `resositories{...}` and `compile 'couk.doridori.dynamo:dynamo:1.0.0'`
+
 License
 --------
 
