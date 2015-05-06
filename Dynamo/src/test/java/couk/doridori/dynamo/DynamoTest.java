@@ -28,13 +28,21 @@ public class DynamoTest
     }
 
     @Test
-    public void observerCalledOnDoubleStateChange()
+    public void observerCalledOnDoubleStateChange_shouldOnlyPassLastStateOnce()
     {
-        //did see a bug with original impl that back to back transitions would result if the middle State lifecycle methods being skipped
+        //old version had bug when synchronous state change the observer would be called twice with the newest state
 
         final Dynamo dynamo = new Dynamo(){};
-        final StateMachine.State firstState = new StateMachine.State(){};
+
         final StateMachine.State secondState = new StateMachine.State(){};
+        final StateMachine.State firstState = new StateMachine.State(){
+            @Override
+            public void enteringState()
+            {
+                super.enteringState();
+                dynamo.newState(secondState);
+            }
+        };
 
         Observer observerSpy = Mockito.spy(new Observer()
         {
@@ -47,10 +55,7 @@ public class DynamoTest
                 switch (callCount)
                 {
                     case 1:
-                       Assert.assertEquals(firstState, dynamo.getStateMachine().getCurrentState());
-                        break;
-                    case 2:
-                        Assert.assertEquals(secondState, dynamo.getStateMachine().getCurrentState());
+                       Assert.assertEquals(secondState, dynamo.getStateMachine().getCurrentState());
                         break;
                     default:
                         Assert.fail("bad count:"+callCount);
@@ -61,9 +66,8 @@ public class DynamoTest
         dynamo.addObserver(observerSpy);
 
         dynamo.newState(firstState);
-        dynamo.newState(secondState);
 
         //make sure the update method was called only twice so the test code in the observerSpy was defo executed
-        Mockito.verify(observerSpy, Mockito.times(2)).update(Matchers.isA(Observable.class), Matchers.any());
+        Mockito.verify(observerSpy, Mockito.times(1)).update(Matchers.isA(Observable.class), Matchers.any());
     }
 }

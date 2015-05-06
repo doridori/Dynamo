@@ -37,8 +37,8 @@ public abstract class Dynamo<T extends StateMachine.State> extends Observable
 
     protected void newState(T newState)
     {
-        mStateMachine.nextState(newState);
         setChanged();
+        mStateMachine.nextState(newState);
         notifyObservers();
     }
 }
