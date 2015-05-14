@@ -10,7 +10,7 @@ import java.util.Random;
 /**
  * Example Dynamo implementation that performs some arbitrary asynchronous operation.
  */
-public class ComputationDynamo extends Dynamo<ComputationDynamo.ComputationState>
+public class ComputationDynamo extends Dynamo<ComputationDynamo.BaseState>
 {
     //======================================================================================
     // CONSTRUCTOR
@@ -43,7 +43,7 @@ public class ComputationDynamo extends Dynamo<ComputationDynamo.ComputationState
      *
      * Abstract as extending an abstract class.
      */
-    protected abstract class ComputationState extends StateMachine.State
+    protected abstract class BaseState extends StateMachine.State
     {
         public abstract void startComputation();
 
@@ -53,7 +53,7 @@ public class ComputationDynamo extends Dynamo<ComputationDynamo.ComputationState
         public abstract void accept(ComputationVisitor visitor);
     }
 
-    public class UninitializedState extends ComputationState
+    public class UninitializedState extends BaseState
     {
         @Override
         public void startComputation()
@@ -68,7 +68,7 @@ public class ComputationDynamo extends Dynamo<ComputationDynamo.ComputationState
         }
     }
 
-    public class PerformingComputationState extends ComputationState
+    public class PerformingComputationState extends BaseState
     {
         @Override
         public void enteringState()
@@ -112,7 +112,7 @@ public class ComputationDynamo extends Dynamo<ComputationDynamo.ComputationState
         }
     }
 
-    public class ComputationFinishedState extends ComputationState
+    public class ComputationFinishedState extends BaseState
     {
         private int mResult;
 
