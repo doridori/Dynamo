@@ -12,7 +12,7 @@ import java.util.Observer;
 /**
  * Example Activity that interacts with a stateful-Dynamo instance
  */
-public class ComputationActivity extends ActionBarActivity implements Observer, ComputationDynamo.ComputationVisitor
+public class ComputationActivity extends ActionBarActivity implements Observer, ComputationDynamo.Visitor
 {
     private ComputationDynamo mComputationDynamo;
 

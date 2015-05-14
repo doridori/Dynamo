@@ -50,7 +50,7 @@ public class ComputationDynamo extends Dynamo<ComputationDynamo.BaseState>
         /**
          * Visitor pattern
          */
-        public abstract void accept(ComputationVisitor visitor);
+        public abstract void accept(Visitor visitor);
     }
 
     public class UninitializedState extends BaseState
@@ -62,7 +62,7 @@ public class ComputationDynamo extends Dynamo<ComputationDynamo.BaseState>
         }
 
         @Override
-        public void accept(ComputationVisitor visitor)
+        public void accept(Visitor visitor)
         {
             visitor.onState(this);
         }
@@ -106,7 +106,7 @@ public class ComputationDynamo extends Dynamo<ComputationDynamo.BaseState>
         }
 
         @Override
-        public void accept(ComputationVisitor visitor)
+        public void accept(Visitor visitor)
         {
             visitor.onState(this);
         }
@@ -136,7 +136,7 @@ public class ComputationDynamo extends Dynamo<ComputationDynamo.BaseState>
         }
 
         @Override
-        public void accept(ComputationVisitor visitor)
+        public void accept(Visitor visitor)
         {
             visitor.onState(this);
         }
@@ -146,15 +146,15 @@ public class ComputationDynamo extends Dynamo<ComputationDynamo.BaseState>
     // VISITOR
     //======================================================================================
 
-    public interface ComputationVisitor
+    public interface Visitor
     {
         public void onState(UninitializedState state);
         public void onState(PerformingComputationState state);
         public void onState(ComputationFinishedState state);
     }
 
-    public void visitCurrentState(ComputationVisitor computationVisitor)
+    public void visitCurrentState(Visitor visitor)
     {
-        getStateMachine().getCurrentState().accept(computationVisitor);
+        getStateMachine().getCurrentState().accept(visitor);
     }
 }
