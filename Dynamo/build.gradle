@@ -54,12 +54,11 @@ publishing {
 
 bintray {
     user = 'doridori'
-    key = 'keyhere!'
+    key = 'enterKey!'
     publications = ['MyPublication']
 
     configurations = ['archives']
 
-    dryRun = true //Whether to run this as dry-run, without deploying
     publish = true //If version should be auto published after an upload
     pkg {
         repo = 'maven'
