@@ -1,5 +1,5 @@
 plugins {
-    id "com.jfrog.bintray" version "1.0"
+    id "com.jfrog.bintray" version "1.2"
 }
 
 apply plugin: 'java'
@@ -55,6 +55,7 @@ publishing {
 bintray {
     user = 'doridori'
     key = 'keyhere!'
+    publications = ['MyPublication']
 
     configurations = ['archives']
 
@@ -64,10 +65,18 @@ bintray {
         repo = 'maven'
         name = 'Dynamo'
         version {
-            gpg {
-                sign = false //Determines whether to GPG sign the files. The default is false
-                passphrase = 'passphrase' //Optional. The passphrase for GPG signing'
-            }
+            name='1.0.1'
+        }
+    }
+}
+
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            from components.java
+            groupId 'co.uk.doridori'
+            artifactId 'dynamo'
+            version '1.0.1'
         }
     }
 }
