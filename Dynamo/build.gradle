@@ -3,6 +3,7 @@ plugins {
 }
 
 apply plugin: 'java'
+//apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 sourceCompatibility = 1.7
@@ -43,10 +44,10 @@ artifacts {
 publishing {
     publications {
         releaseJar(MavenPublication) {
+            from components.java
             groupId 'couk.doridori.dynamo'
             artifactId 'dynamo'
 
-            from components.java
         }
     }
 }
@@ -59,6 +60,7 @@ bintray {
 
     configurations = ['archives']
 
+    dryRun = true
     publish = true //If version should be auto published after an upload
     pkg {
         repo = 'maven'
