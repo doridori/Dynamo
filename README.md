@@ -2,7 +2,7 @@
 
 # Dynamo
 
-An extremely lightweight collection of classes for implementing a **state** based decoupled architecture for Android applications.
+An extremely lightweight collection of classes for implementing a **state** based decoupled controller architecture for Android applications.
 
 A major benefit of this is that it also keeps asynchronous code away from the Android lifecycle.
 
