@@ -2,7 +2,10 @@
 
 #DEPRECATED
 
-This project is now deprecated and superseded by [Pilot](https://github.com/doridori/Pilot). 
+This project is now deprecated and superseded by:
+
+- [Pilot](https://github.com/doridori/Pilot) for Android app architecture
+- [Engine](https://github.com/doridori/Engine) for a lightweight Finite State Machine
 
 # Dynamo
 
