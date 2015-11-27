@@ -1,5 +1,9 @@
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Dynamo-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/1805) [![Circle CI](https://circleci.com/gh/doridori/Dynamo.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/doridori/Dynamo) [![](https://img.shields.io/badge/AndroidWeekly-%23150-blue.svg)](http://androidweekly.net/issues/issue-150)
 
+#This project is now deprecated!
+
+This project is now deprecated and superseded by [Pilot](https://github.com/doridori/Pilot). 
+
 # Dynamo
 
 An extremely lightweight collection of classes for implementing a **state** based decoupled controller architecture for Android applications.
