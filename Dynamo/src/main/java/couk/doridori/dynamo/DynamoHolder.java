@@ -49,7 +49,8 @@ public class DynamoHolder<T>
 
     /**
      * @param meta See the doc for this class {@link couk.doridori.dynamo.DynamoHolder}
-     * @return
+     * @param dynamoFactory Factory that defines how to build a Dynamo
+     * @return an existing Dynamo associated with meta, or a new one if no association exists
      */
     public T getDynamo(String meta, DynamoFactory<T> dynamoFactory)
     {

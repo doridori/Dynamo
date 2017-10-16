@@ -19,7 +19,7 @@ package couk.doridori.dynamo;
  * Simple state machine. If need something that needs to handle a big transition matrix look at the SMC compiler
  *
  * Takes a generic so you can define you own root states. Can just use {@link StateMachine.State} if
- * your you are not going to use a base State interface for View->Dynamo comms.
+ * your you are not going to use a base State interface for View-{@literal >}Dynamo comms.
  *
  * User: doriancussen
  * Date: 05/11/2012
